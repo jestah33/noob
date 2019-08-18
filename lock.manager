@@ -1,0 +1,49 @@
+definition(
+  name: 'Lock Manager',
+  namespace: 'ethayer',
+  author: 'Erik Thayer',
+  parent: parent ? "ethayer: Lock Manager" : null,
+  description: 'Manage locks and users',
+  category: 'Safety & Security',
+  singleInstance: true,
+  iconUrl: 'https://images.lockmanager.io/app/v1/images/lm.jpg',
+  iconX2Url: 'https://images.lockmanager.io/app/v1/images/lm2x.jpg',
+  iconX3Url: 'https://images.lockmanager.io/app/v1/images/lm3x.jpg'
+)
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+import java.util.regex.*
+include 'asynchttp_v1'
+
+preferences {
+  // Manager ===
+  page name: 'appPageWizard'
+  page name: 'mainLandingPage'
+  page name: 'mainSetupPage', title: 'Installed', install: true, uninstall: true, submitOnChange: true
+  page name: 'mainPage', title: 'Lock Manager', install: true, uninstall: true, submitOnChange: true
+  page name: 'infoRefreshPage'
+  page name: 'notificationPage'
+  page name: 'helloHomePage'
+  page name: 'lockInfoPage'
+  page name: 'keypadPage'
+  page name: 'askAlexaPage'
+
+  // Lock ====
+  page name: 'lockLandingPage'
+  page name: 'lockSetupPage'
+  page name: 'lockMainPage'
+  page name: 'lockErrorPage'
+  page name: 'lockNotificationPage'
+  page name: 'lockHelloHomePage'
+  page name: 'lockInfoRefreshPage'
+  page name: 'lockAskAlexaPage'
+
+  // User ====
+  page name: 'userLandingPage'
+  page name: 'userSetupPage'
+  page name: 'userMainPage'
+  page name: 'userLockPage', title: 'Manage Lock', install: false, uninstall: false
+  page name: 'schedulingPage', title: 'Schedule User', install: false, uninstall: false
+  page name: 'calendarPage', title: 'Calendar', install: false, uninstall: false
+  page name: 'userNotificationPage'
+  page name: 'reEnableUserLockPage'
